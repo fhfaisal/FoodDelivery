@@ -5,12 +5,16 @@ import '../../../routes/app_pages.dart';
 class SplashScreenController extends GetxController {
   final height = 320.0.obs;
   final width = 320.0.obs;
+  late RxBool selected = false.obs;
 
   final count = 0.obs;
   @override
   void onInit() {
+    Timer(const Duration(milliseconds: 500), () {
+      selected=true.obs;
+      update();
+    },);
     loadTime();
-    print(count);
     super.onInit();
   }
 
