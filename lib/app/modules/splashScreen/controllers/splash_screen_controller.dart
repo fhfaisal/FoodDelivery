@@ -40,11 +40,15 @@ class SplashScreenController extends GetxController {
     // } else{
     //   navigateToOnBoardingScreen();
     // }
-    navigateToHome();
+    // navigateToHome();
+    navigateToOnBoarding();
   }
 
   navigateToHome() {
     Get.offAllNamed(Routes.HOME);
+  }
+  navigateToOnBoarding() {
+    Get.offAllNamed(Routes.ON_BOARDING);
   }
 
 }

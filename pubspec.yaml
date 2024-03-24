@@ -24,5 +24,6 @@ flutter_launcher_icons:
 flutter: 
   assets: 
     - assets/images/splash/
+    - assets/images/onBoarding/
   uses-material-design: true
 
