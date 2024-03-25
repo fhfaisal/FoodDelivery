@@ -22,23 +22,34 @@ class CustomInputForm extends StatelessWidget {
         controller: controller,
         cursorColor: AppColor.primary,
         decoration: InputDecoration(
-          prefixIcon: isPrefixIcon? icon:null,
+          prefixIcon: isPrefixIcon? ShaderMask(
+            blendMode: BlendMode.srcIn,
+            shaderCallback: (Rect bounds) => const RadialGradient(
+              center: Alignment.topCenter,
+              stops: [4, 0.1],
+              colors: [
+                AppColor.linear1,
+                AppColor.linear2,
+              ],
+            ).createShader(bounds),
+            child: icon
+          ):null,
           labelText: labelText,
           labelStyle: Theme.of(context).textTheme.labelLarge!.copyWith(color: AppColor.primary),
           contentPadding: isPrefixIcon?const EdgeInsets.fromLTRB(25, 15, 15, 15):const EdgeInsets.all(15),
           border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(15)),
             borderSide: BorderSide(
-              color: AppColor.inputBorder,
+              color: AppColor.gray,
             ),
           ),
           focusedBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(15)),
               borderSide: BorderSide(color: AppColor.primary,width: 2)
           ),
-          enabledBorder: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-              borderSide: BorderSide(color: AppColor.primary,)
+          enabledBorder:  OutlineInputBorder(
+              borderRadius: const BorderRadius.all(Radius.circular(15)),
+              borderSide: BorderSide(color: AppColor.gray.withOpacity(0.4),width: 1.5)
           ),
         ),
       ),

@@ -1,7 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
+
 class EmailSignUpController extends GetxController {
-  //TODO: Implement EmailSignUpController
+  final email=TextEditingController().obs;
+  final password=TextEditingController().obs;
+  final obscureText = true.obs;
 
   final count = 0.obs;
   @override
@@ -19,5 +24,7 @@ class EmailSignUpController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  navigateToLogin(){
+    Get.toNamed(Routes.EMAIL_LOGIN);
+  }
 }

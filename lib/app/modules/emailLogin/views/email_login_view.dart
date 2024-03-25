@@ -58,9 +58,21 @@ class EmailLoginView extends GetView<EmailLoginController> {
                     ),
                     CustomInputForm(
                       isPrefixIcon: true,
-                      controller: controller.email.value,
+                      controller: controller.password.value,
                       labelText: 'Password',
                     ),
+                    GestureDetector(
+                      onTap: () => controller.navigateToForgot(),
+                      child: GradientText(
+                        'Forgot Your Password?',
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold,decoration:TextDecoration.underline ),
+                        gradient: const LinearGradient(colors: [
+                          AppColor.linear1,
+                          AppColor.linear2,
+                        ]),),
+                    ),
+                    const SizedBox(height: 10),
+                    PrimaryButton(controller: controller, text: 'Login', onTap: () => controller.navigateHome(),),
                     CustomHeight,
                     Text('Or Continue With',style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),),
                     CustomHeight,
@@ -104,19 +116,21 @@ class EmailLoginView extends GetView<EmailLoginController> {
                         ],
                       ),
                     ),
-                    CustomHeight,
-                    GradientText(
-                      'Forget Your Password?',
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold,decoration:TextDecoration.underline ),
-                      gradient: const LinearGradient(colors: [
-                        AppColor.linear1,
-                        AppColor.linear2,
-                      ]),),
-                    CustomHeight,
-                    PrimaryButton(controller: controller, text: 'Login', onTap: () => null,)
+
                   ],
                 ),
-              )
+              ),
+              CustomHeight,
+              GestureDetector(
+                onTap: () => controller.navigateToSignUp(),
+                child: GradientText(
+                  "Create a new account",
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold,decoration:TextDecoration.underline ),
+                  gradient: const LinearGradient(colors: [
+                    AppColor.linear1,
+                    AppColor.linear2,
+                  ]),),
+              ),
             ],
           ),
         ),

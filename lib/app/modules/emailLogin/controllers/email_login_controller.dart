@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:food_delivery/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class EmailLoginController extends GetxController {
@@ -21,5 +22,13 @@ class EmailLoginController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  navigateToSignUp(){
+    Get.toNamed(Routes.EMAIL_SIGN_UP);
+  }
+  navigateHome(){
+    Get.offAndToNamed(Routes.HOME);
+  }
+  navigateToForgot(){
+    Get.toNamed(Routes.FORGOT_PASSWORD);
+  }
 }
