@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 class EmailLoginController extends GetxController {
   final email=TextEditingController().obs;
   final password=TextEditingController().obs;
+  final obscureText = true.obs;
 
   final count = 0.obs;
   @override

@@ -61,12 +61,21 @@ class EmailSignUpView extends GetView<EmailSignUpController> {
                           .textTheme
                           .titleLarge!
                           .copyWith(fontWeight: FontWeight.bold, color: Color(0xff09051C))),
+
                   CustomHeight,
                   CustomInputForm(
                     isPrefixIcon: true,
                     icon: const Icon(Icons.person),
+                    controller: controller.name.value,
+                    labelText: 'Name',
+                    hintText: 'Enter your good name',
+                  ),
+                  CustomInputForm(
+                    isPrefixIcon: true,
+                    icon: const Icon(Icons.email),
                     controller: controller.email.value,
                     labelText: 'Email',
+                    hintText: 'example@gmail.com',
                   ),
                   const SizedBox(height: 5),
                   Obx(
@@ -75,6 +84,10 @@ class EmailSignUpView extends GetView<EmailSignUpController> {
                       controller: controller.password.value,
                       cursorColor: AppColor.primary,
                       decoration: InputDecoration(
+                        labelText: 'Password',
+                        hintText: 'Enter at least 8 character password',
+                        labelStyle: Theme.of(context).textTheme.labelLarge!.copyWith(color: AppColor.primary),
+                        hintStyle: Theme.of(context).textTheme.labelLarge!.copyWith(color: AppColor.gray),
                         prefixIcon: ShaderMask(
                             blendMode: BlendMode.srcIn,
                             shaderCallback: (Rect bounds) => const RadialGradient(
@@ -115,8 +128,6 @@ class EmailSignUpView extends GetView<EmailSignUpController> {
                                         ).createShader(bounds),
                                     child: const Icon(Icons.visibility_off)),
                               ),
-                        labelText: 'Password',
-                        labelStyle: Theme.of(context).textTheme.labelLarge!.copyWith(color: AppColor.primary),
                         contentPadding: const EdgeInsets.fromLTRB(25, 15, 15, 15),
                         border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15)),

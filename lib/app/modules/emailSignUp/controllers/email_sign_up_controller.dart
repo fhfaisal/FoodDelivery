@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../routes/app_pages.dart';
 
 class EmailSignUpController extends GetxController {
+  final name=TextEditingController().obs;
   final email=TextEditingController().obs;
   final password=TextEditingController().obs;
   final obscureText = true.obs;

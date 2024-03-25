@@ -14,6 +14,7 @@ import '../controllers/email_login_controller.dart';
 
 class EmailLoginView extends GetView<EmailLoginController> {
   const EmailLoginView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -26,97 +27,185 @@ class EmailLoginView extends GetView<EmailLoginController> {
           child: Column(
             children: [
               SizedBox(
-                height: MediaQuery.sizeOf(context).height/3,
-                width: MediaQuery.sizeOf(context).width,
-                child: Stack(
-                  children: [
-                    Image(image: const AssetImage(SplashImg.pattern),fit: BoxFit.cover,width: MediaQuery.sizeOf(context).width),
-                    Positioned(
-                      top: MediaQuery.sizeOf(context).height/12,
-                        left: 0,
-                        right: 0,
-                        child: Image(image: const AssetImage(SplashImg.logo),fit: BoxFit.fitHeight,height: MediaQuery.sizeOf(context).height/8,)),
-                   Positioned(
-                      top: MediaQuery.sizeOf(context).height/5,
-                        left: 0,
-                        right: 0,
-                        child: Image(image: const AssetImage(SplashImg.appName),fit: BoxFit.fitHeight,height: MediaQuery.sizeOf(context).height/15,)),
-                  ],
-                )
-              ),
+                  height: MediaQuery.sizeOf(context).height / 3,
+                  width: MediaQuery.sizeOf(context).width,
+                  child: Stack(
+                    children: [
+                      Image(
+                          image: const AssetImage(SplashImg.pattern), fit: BoxFit.cover, width: MediaQuery.sizeOf(context).width),
+                      Positioned(
+                          top: MediaQuery.sizeOf(context).height / 12,
+                          left: 0,
+                          right: 0,
+                          child: Image(
+                            image: const AssetImage(SplashImg.logo),
+                            fit: BoxFit.fitHeight,
+                            height: MediaQuery.sizeOf(context).height / 8,
+                          )),
+                      Positioned(
+                          top: MediaQuery.sizeOf(context).height / 5,
+                          left: 0,
+                          right: 0,
+                          child: Image(
+                            image: const AssetImage(SplashImg.appName),
+                            fit: BoxFit.fitHeight,
+                            height: MediaQuery.sizeOf(context).height / 15,
+                          )),
+                    ],
+                  )),
               CustomHeight,
               Container(
                 margin: fixMargin(),
                 child: Column(
                   children: [
-                    Text('Login To Your Account',style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.bold)),
+                    Text('Login To Your Account',
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.bold)),
                     CustomHeight,
                     CustomInputForm(
                       isPrefixIcon: true,
+                      icon: const Icon(Icons.email),
                       controller: controller.email.value,
                       labelText: 'Email',
                     ),
-                    CustomInputForm(
-                      isPrefixIcon: true,
-                      controller: controller.password.value,
-                      labelText: 'Password',
+                    const SizedBox(height: 5),
+                    Obx(
+                      () => TextFormField(
+                        obscureText: controller.obscureText.value,
+                        controller: controller.password.value,
+                        cursorColor: AppColor.primary,
+                        decoration: InputDecoration(
+                          prefixIcon: ShaderMask(
+                              blendMode: BlendMode.srcIn,
+                              shaderCallback: (Rect bounds) => const RadialGradient(
+                                    center: Alignment.topCenter,
+                                    stops: [4, 0.1],
+                                    colors: [
+                                      AppColor.linear1,
+                                      AppColor.linear2,
+                                    ],
+                                  ).createShader(bounds),
+                              child: const Icon(Icons.lock)),
+                          suffixIcon: controller.obscureText.value
+                              ? GestureDetector(
+                                  onTap: () => controller.obscureText.value = false,
+                                  child: ShaderMask(
+                                      blendMode: BlendMode.srcIn,
+                                      shaderCallback: (Rect bounds) => const RadialGradient(
+                                            center: Alignment.topCenter,
+                                            stops: [4, 0.1],
+                                            colors: [
+                                              AppColor.linear1,
+                                              AppColor.linear2,
+                                            ],
+                                          ).createShader(bounds),
+                                      child: const Icon(Icons.visibility)),
+                                )
+                              : GestureDetector(
+                                  onTap: () => controller.obscureText.value = true,
+                                  child: ShaderMask(
+                                      blendMode: BlendMode.srcIn,
+                                      shaderCallback: (Rect bounds) => const RadialGradient(
+                                            center: Alignment.topCenter,
+                                            stops: [4, 0.1],
+                                            colors: [
+                                              AppColor.linear1,
+                                              AppColor.linear2,
+                                            ],
+                                          ).createShader(bounds),
+                                      child: const Icon(Icons.visibility_off)),
+                                ),
+                          labelText: 'Password',
+                          labelStyle: Theme.of(context).textTheme.labelLarge!.copyWith(color: AppColor.primary),
+                          contentPadding: const EdgeInsets.fromLTRB(25, 15, 15, 15),
+                          border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                            borderSide: BorderSide(
+                              color: AppColor.gray,
+                            ),
+                          ),
+                          focusedBorder: const OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                              borderSide: BorderSide(color: AppColor.primary, width: 2)),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: const BorderRadius.all(Radius.circular(15)),
+                              borderSide: BorderSide(color: AppColor.gray.withOpacity(0.4), width: 1.5)),
+                        ),
+                      ),
                     ),
                     GestureDetector(
                       onTap: () => controller.navigateToForgot(),
                       child: GradientText(
                         'Forgot Your Password?',
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold,decoration:TextDecoration.underline ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge!
+                            .copyWith(fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
                         gradient: const LinearGradient(colors: [
                           AppColor.linear1,
                           AppColor.linear2,
-                        ]),),
+                        ]),
+                      ),
                     ),
                     const SizedBox(height: 10),
-                    PrimaryButton(controller: controller, text: 'Login', onTap: () => controller.navigateHome(),),
+                    PrimaryButton(
+                      controller: controller,
+                      text: 'Login',
+                      onTap: () => controller.navigateHome(),
+                    ),
                     CustomHeight,
-                    Text('Or Continue With',style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),),
+                    Text(
+                      'Or Continue With',
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),
+                    ),
                     CustomHeight,
                     Container(
                       margin: fixMargin(),
                       child: Row(
                         children: [
-                          Flexible(child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 5.0,vertical: 12),
+                          Flexible(
+                              child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 12),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              border: Border.all(
-                                color: AppColor.gray.withOpacity(0.3)
-                              )
-                            ),
+                                borderRadius: BorderRadius.circular(15),
+                                border: Border.all(color: AppColor.gray.withOpacity(0.3))),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                const Image(image: AssetImage(CommonImg.facebook),height: 35,),
-                                Text('Facebook',style: Theme.of(context).textTheme.titleMedium,)
+                                const Image(
+                                  image: AssetImage(CommonImg.facebook),
+                                  height: 35,
+                                ),
+                                Text(
+                                  'Facebook',
+                                  style: Theme.of(context).textTheme.titleMedium,
+                                )
                               ],
                             ),
                           )),
                           const SizedBox(width: 20),
-                          Flexible(child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 5.0,vertical: 12),
+                          Flexible(
+                              child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 12),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              border: Border.all(
-                                  color: AppColor.gray.withOpacity(0.3)
-                              )
-                            ),
+                                borderRadius: BorderRadius.circular(15),
+                                border: Border.all(color: AppColor.gray.withOpacity(0.3))),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                const Image(image: AssetImage(CommonImg.google),height: 35,),
-                                Text('Google',style: Theme.of(context).textTheme.titleMedium,)
+                                const Image(
+                                  image: AssetImage(CommonImg.google),
+                                  height: 35,
+                                ),
+                                Text(
+                                  'Google',
+                                  style: Theme.of(context).textTheme.titleMedium,
+                                )
                               ],
                             ),
                           )),
                         ],
                       ),
                     ),
-
                   ],
                 ),
               ),
@@ -125,11 +214,15 @@ class EmailLoginView extends GetView<EmailLoginController> {
                 onTap: () => controller.navigateToSignUp(),
                 child: GradientText(
                   "Create a new account",
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold,decoration:TextDecoration.underline ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
                   gradient: const LinearGradient(colors: [
                     AppColor.linear1,
                     AppColor.linear2,
-                  ]),),
+                  ]),
+                ),
               ),
             ],
           ),
@@ -138,5 +231,3 @@ class EmailLoginView extends GetView<EmailLoginController> {
     );
   }
 }
-
-
