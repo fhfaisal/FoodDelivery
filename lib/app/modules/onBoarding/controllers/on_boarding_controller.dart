@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:food_delivery/app/routes/app_pages.dart';
 import 'package:get/get.dart';
+
+import '../model/content_model.dart';
 
 class OnBoardingController extends GetxController {
   RxInt currentIndex = 0.obs;
@@ -22,6 +25,21 @@ class OnBoardingController extends GetxController {
   void onClose() {
     super.onClose();
   }
+  onBoardingComplete(){
+    if(currentIndex.value == contents.length - 1){
+      // navigateToHome();
+      navigateToLogin();
+    }else{
+      pageController.nextPage(
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeOut);
+    }
+  }
 
-  void increment() => count.value++;
+  navigateToHome(){
+    Get.offAndToNamed(Routes.HOME);
+  }
+  navigateToLogin(){
+    Get.offAndToNamed(Routes.EMAIL_LOGIN);
+  }
 }

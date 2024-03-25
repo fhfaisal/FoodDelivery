@@ -10,6 +10,7 @@ void main() {
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        cardTheme: CardTheme(color: Colors.white),
         textTheme: TextTheme(
           // displayLarge: onBoardingTitle(),
           // titleLarge: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),

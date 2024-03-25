@@ -25,5 +25,6 @@ flutter:
   assets: 
     - assets/images/splash/
     - assets/images/onBoarding/
+    - assets/images/common/
   uses-material-design: true
 

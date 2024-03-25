@@ -6,6 +6,8 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const SPLASH_SCREEN = _Paths.SPLASH_SCREEN;
   static const ON_BOARDING = _Paths.ON_BOARDING;
+  static const EMAIL_LOGIN = _Paths.EMAIL_LOGIN;
+  static const EMAIL_SIGN_UP = _Paths.EMAIL_SIGN_UP;
 }
 
 abstract class _Paths {
@@ -13,4 +15,6 @@ abstract class _Paths {
   static const HOME = '/home';
   static const SPLASH_SCREEN = '/splash-screen';
   static const ON_BOARDING = '/on-boarding';
+  static const EMAIL_LOGIN = '/email-login';
+  static const EMAIL_SIGN_UP = '/email-sign-up';
 }

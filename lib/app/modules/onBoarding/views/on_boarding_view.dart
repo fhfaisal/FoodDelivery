@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/utils/color.dart';
+import 'package:food_delivery/utils/image_path/other_utils.dart';
 import 'package:food_delivery/utils/image_path/splash_img.dart';
 import 'package:food_delivery/utils/text_style.dart';
 
@@ -6,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 
 import '../../../../utils/button/button_text_style.dart';
+import '../../../../utils/button/primary_button.dart';
 import '../../../../utils/static_data.dart';
 import '../controllers/on_boarding_controller.dart';
 import '../model/content_model.dart';
@@ -34,27 +37,26 @@ class OnBoardingView extends GetView<OnBoardingController> {
                       children: [
                         Image.asset(
                           contents[i].image,
-                          height: MediaQuery.of(context).size.height/2,
-                          width: double.infinity,
+                          height: MediaQuery.of(context).size.height / 2,
+                          width: MediaQuery.of(context).size.width,
+                          fit: BoxFit.contain,
                         ),
+                        const Spacer(),
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: MediaQuery.sizeOf(context).width*0.20),
+                          padding: EdgeInsets.symmetric(horizontal: MediaQuery.sizeOf(context).width * 0.20),
                           child: Column(
                             children: [
-                              Text(
-                                contents[i].title,
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.bold,fontSize: 24)
-                              ),
-                              SizedBox(height: MediaQuery.sizeOf(context).height/80),
-                              Text(
-                                contents[i].body,
-                                textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.titleSmall!
-                              ),
+                              Text(contents[i].title,
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge!
+                                      .copyWith(fontWeight: FontWeight.bold, fontSize: 24)),
+                              Text(contents[i].body, textAlign: TextAlign.center, style: Theme.of(context).textTheme.titleSmall!),
                             ],
                           ),
-                        )
+                        ),
+                        const Spacer()
                       ],
                     );
                   },
@@ -70,67 +72,15 @@ class OnBoardingView extends GetView<OnBoardingController> {
               //     ),
               //   ),
               // ),
-              PrimaryButton(controller: controller,
-                onTap:() {
-                  controller.pageController.nextPage(
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeOut);
-                },
-                text: Text(
-                  controller.currentIndex.value == contents.length - 1
-                      ? "Continue"
-                      : "Next",
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white)
-                ),
+
+              PrimaryButton(
+                controller: controller,
+                onTap: () => controller.onBoardingComplete(),
+                text: controller.currentIndex.value == contents.length - 1 ? "Continue" : "Next",
               ),
-              SizedBox(height: MediaQuery.of(context).size.height/15,)
+              CustomHeight,
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class PrimaryButton extends StatelessWidget {
-  const PrimaryButton({
-    super.key,
-    required this.controller,
-    required this.text,
-    required this.onTap,
-  });
-
-  final controller;
-  final Widget text;
-  final Callback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Card(
-        color: Colors.transparent,
-        elevation: 4,
-        child: Container(
-          height: MediaQuery.of(context).size.height/18,
-          width: MediaQuery.of(context).size.width/3,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            gradient: const LinearGradient(
-               begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                stops: [
-                  0.1,
-                  1
-                ],
-                colors: [
-                  Color(0xff53E88B),
-                  Color(0xff15BE77),
-                ])
-          ),
-          child: text,
         ),
       ),
     );
