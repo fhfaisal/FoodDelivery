@@ -132,13 +132,14 @@ class EmailLoginView extends GetView<EmailLoginController> {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 5),
                     GestureDetector(
                       onTap: () => controller.navigateToForgot(),
                       child: GradientText(
                         'Forgot Your Password?',
                         style: Theme.of(context)
                             .textTheme
-                            .bodyLarge!
+                            .bodySmall!
                             .copyWith(fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
                         gradient: const LinearGradient(colors: [
                           AppColor.linear1,

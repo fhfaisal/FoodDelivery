@@ -1,12 +1,13 @@
+import 'package:food_delivery/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
-  //TODO: Implement HomeController
+import '../../../data/menuResponse.dart';
 
-  final count = 10.obs;
+class HomeController extends GetxController {
+  Rx<Menu> menu= Menu().obs;
+  RxBool explore=true.obs;
   @override
   void onInit() {
-    print(count);
     super.onInit();
   }
 
@@ -20,5 +21,13 @@ class HomeController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  onExplore(){
+    explore.value=!explore.value;
+    update();
+  }
+
+  navigateToDetailsPage(dynamic restaurantDetails){
+    Get.toNamed(Routes.RESTAURANT_DETAILS,arguments: restaurantDetails);
+  }
+  
 }

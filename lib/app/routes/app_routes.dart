@@ -9,6 +9,7 @@ abstract class Routes {
   static const EMAIL_LOGIN = _Paths.EMAIL_LOGIN;
   static const EMAIL_SIGN_UP = _Paths.EMAIL_SIGN_UP;
   static const FORGOT_PASSWORD = _Paths.FORGOT_PASSWORD;
+  static const RESTAURANT_DETAILS = _Paths.RESTAURANT_DETAILS;
 }
 
 abstract class _Paths {
@@ -19,4 +20,5 @@ abstract class _Paths {
   static const EMAIL_LOGIN = '/email-login';
   static const EMAIL_SIGN_UP = '/email-sign-up';
   static const FORGOT_PASSWORD = '/forgot-password';
+  static const RESTAURANT_DETAILS = '/restaurant-details';
 }

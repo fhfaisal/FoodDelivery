@@ -32,7 +32,7 @@ class OnBoardingView extends GetView<OnBoardingController> {
                   },
                   itemBuilder: (_, i) {
                     return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Image.asset(

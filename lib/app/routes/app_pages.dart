@@ -10,6 +10,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/onBoarding/bindings/on_boarding_binding.dart';
 import '../modules/onBoarding/views/on_boarding_view.dart';
+import '../modules/restaurantDetails/bindings/restaurant_details_binding.dart';
+import '../modules/restaurantDetails/views/restaurant_details_view.dart';
 import '../modules/splashScreen/bindings/splash_screen_binding.dart';
 import '../modules/splashScreen/views/splash_screen_view.dart';
 
@@ -50,6 +52,11 @@ class AppPages {
       name: _Paths.FORGOT_PASSWORD,
       page: () => const ForgotPasswordView(),
       binding: ForgotPasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.RESTAURANT_DETAILS,
+      page: () => const RestaurantDetailsView(),
+      binding: RestaurantDetailsBinding(),
     ),
   ];
 }
